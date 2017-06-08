@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		703B27860E5E80FA5B5EC3E7 /* Pods_GrayGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650A1444412A8C58EC722B7D /* Pods_GrayGram.framework */; };
+		8C47BAD71EE971E1009B59D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47BAD61EE971E1009B59D0 /* User.swift */; };
+		8C47BADA1EE983C6009B59D0 /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47BAD91EE983C6009B59D0 /* String+Size.swift */; };
 		8CEFD8D01EE7CF9E009CF043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFD8CF1EE7CF9E009CF043 /* AppDelegate.swift */; };
 		8CEFD8D21EE7CF9E009CF043 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFD8D11EE7CF9E009CF043 /* FeedViewController.swift */; };
 		8CEFD8D71EE7CF9E009CF043 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CEFD8D61EE7CF9E009CF043 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 		51CF68F40B794AE45A3A3503 /* Pods-GrayGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrayGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrayGram/Pods-GrayGram.release.xcconfig"; sourceTree = "<group>"; };
 		650A1444412A8C58EC722B7D /* Pods_GrayGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrayGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C1A4A6C5086E4A028E47CD /* Pods-GrayGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrayGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrayGram/Pods-GrayGram.debug.xcconfig"; sourceTree = "<group>"; };
+		8C47BAD61EE971E1009B59D0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8C47BAD91EE983C6009B59D0 /* String+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Size.swift"; sourceTree = "<group>"; };
 		8CEFD8CC1EE7CF9E009CF043 /* GrayGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrayGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEFD8CF1EE7CF9E009CF043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CEFD8D11EE7CF9E009CF043 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +46,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C47BAD81EE9839F009B59D0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8C47BAD91EE983C6009B59D0 /* String+Size.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		8CEFD8C31EE7CF9E009CF043 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +88,7 @@
 				8CEFD8E61EE7E87C009CF043 /* ViewControllers */,
 				8CEFD8E51EE7E873009CF043 /* Views */,
 				8CEFD8E41EE7E86C009CF043 /* Models */,
+				8C47BAD81EE9839F009B59D0 /* Utils */,
 				8CEFD8CF1EE7CF9E009CF043 /* AppDelegate.swift */,
 			);
 			name = Sources;
@@ -102,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				8CEFD8E71EE7F080009CF043 /* Post.swift */,
+				8C47BAD61EE971E1009B59D0 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -261,6 +275,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C47BAD71EE971E1009B59D0 /* User.swift in Sources */,
+				8C47BADA1EE983C6009B59D0 /* String+Size.swift in Sources */,
 				8CEFD8E81EE7F080009CF043 /* Post.swift in Sources */,
 				8CEFD8EA1EE93279009CF043 /* PostCardCell.swift in Sources */,
 				8CEFD8D21EE7CF9E009CF043 /* FeedViewController.swift in Sources */,

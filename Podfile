@@ -8,4 +8,6 @@ target 'GrayGram' do
   # Pods for GrayGram
   pod ‘Alamofire’
   pod ‘ObjectMapper’
+  pod 'ManualLayout'
+  pod 'Kingfisher'
 end

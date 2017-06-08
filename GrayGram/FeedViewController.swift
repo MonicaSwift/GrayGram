@@ -60,7 +60,7 @@ extension FeedViewController:UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! PostCardCell
-        //cell.backgroundColor = .gray
+        cell.backgroundColor = .gray
         let post = self.posts[indexPath.item]
         cell.configure(post: post)
         return cell
@@ -70,7 +70,9 @@ extension FeedViewController:UICollectionViewDataSource {
 extension FeedViewController:UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:collectionView.frame.size.width, height:collectionView.frame.size.width)
+        let post = self.posts[indexPath.item]
+        return PostCardCell.size(width: collectionView.frame.size.width, post: post)
+        //return CGSize(width:collectionView.frame.size.width, height:collectionView.frame.size.width)
     }
 }
 
