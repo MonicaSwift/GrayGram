@@ -10,4 +10,5 @@ target 'GrayGram' do
   pod ‘ObjectMapper’
   pod 'ManualLayout'
   pod 'Kingfisher'
+  pod 'SnapKit'
 end
