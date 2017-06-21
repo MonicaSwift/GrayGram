@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 final class PostCardCell: UICollectionViewCell {
     fileprivate enum Metric {
@@ -45,6 +46,8 @@ final class PostCardCell: UICollectionViewCell {
     fileprivate let likeCountLabel = UILabel()
     fileprivate let messageLabel = UILabel()
     
+    fileprivate var post:Post?
+    
     // 1. 생성자
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,6 +60,7 @@ final class PostCardCell: UICollectionViewCell {
         usernameLabel.textColor = .black
         likeButton.setBackgroundImage(UIImage(named:"icon-like"), for: .normal)
         likeButton.setBackgroundImage(#imageLiteral(resourceName: "icon-like-selected"), for: .selected)
+        likeButton.addTarget(self, action: #selector(likeButtonDidTap), for: .touchUpInside)
         
         likeCountLabel.font = UIFont.boldSystemFont(ofSize: 12)
         messageLabel.font = UIFont.systemFont(ofSize: 14)
@@ -79,12 +83,15 @@ final class PostCardCell: UICollectionViewCell {
     // 2. 설정 : 이 셀이 UI를 표시하기 위한 데이터를 파라미터로 받아서 서브뷰의 데이터를 채움
     func configure(post:Post) {
         print("configure")
+        self.post = post
         
         avatarView.setImage(photoID: post.user.photoID, size: .tiny)
         
         usernameLabel.text = post.user.username
         
         pictureView.setImage(photoID: post.photoID, size: .large)
+        
+        likeButton.isSelected = post.isLiked
         
         likeCountLabel.text = "\(post.likeCount ?? 0)명이 좋아합니다."
         
@@ -168,5 +175,41 @@ final class PostCardCell: UICollectionViewCell {
         
         // 한줄:  sizeToFit -> width 설정
         // 여러줄: width 설정 -> sizeToFit
+    }
+    
+    func likeButtonDidTap() {
+    
+        guard let postID = self.post?.id else { return }
+        let urlString = "https://api.graygram.com/posts/\(postID)/likes"
+        
+        if !likeButton.isSelected {
+            Alamofire.request(urlString, method: .post)
+                .validate(statusCode: 200 ..< 400)
+                .responseData{ response in
+                    switch response.result {
+                    case .success :
+                        print("좋아요 성공 \(postID)")
+                        self.likeButton.isSelected = true
+                    case .failure :
+                        print("좋아요 실패")
+                        self.likeButton.isSelected = false
+                    }
+            }
+        } else {
+            Alamofire.request(urlString, method: .delete)
+                .validate(statusCode: 200 ..< 400)
+                .responseData{ response in
+                    switch response.result {
+                    case .success :
+                        print("좋아요 해제 성공 \(postID)")
+                        self.likeButton.isSelected = false
+                    case .failure :
+                        print("좋아요 해제 실패")
+                        self.likeButton.isSelected = true
+                    }
+            }
+        }
+        
+
     }
 }
