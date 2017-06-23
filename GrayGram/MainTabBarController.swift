@@ -43,7 +43,16 @@ final class MainTabBarController:UITabBarController {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         self.present(pickerController, animated:true, completion: nil)
-        
+    }
+    
+    fileprivate func presernCropViewController(image:UIImage) {
+        let cropViewController = CropViewController(image:image)
+        cropViewController.didFinichCropping = { image in
+            let grayscaledImage = image.grayscale()
+            print(grayscaledImage)
+        }
+        let navigationController = UINavigationController(rootViewController: cropViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
 
@@ -62,13 +71,14 @@ extension MainTabBarController:UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         //print(info)
         /*
-         info
+         info (Dictionary)
          ["UIImagePickerControllerMediaType": public.image, 
          "UIImagePickerControllerReferenceURL": assets-library://asset/asset.PNG?id=162EF7CA-6A32-4F1D-987A-5FBEBAD6B1AD&ext=PNG, 
          "UIImagePickerControllerOriginalImage": <UIImage: 0x608000292a70> size {300, 730} orientation 0 scale 1.000000]
          */
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
-        
+        picker.dismiss(animated: true, completion: nil)
+        self.presernCropViewController(image: image)
     }
 }
 
