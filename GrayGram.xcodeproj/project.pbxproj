@@ -14,6 +14,7 @@
 		8C9AA7991EF794A7006E10F5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7981EF794A7006E10F5 /* LoginViewController.swift */; };
 		8C9AA79B1EF91390006E10F5 /* DataResponse+ErrorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA79A1EF91390006E10F5 /* DataResponse+ErrorInfo.swift */; };
 		8C9AA79D1EF93BAC006E10F5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA79C1EF93BAC006E10F5 /* SplashViewController.swift */; };
+		8C9AA7EB1EFC36CA006E10F5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7EA1EFC36CA006E10F5 /* MainTabBarController.swift */; };
 		8CD8597F1EEFC9DF00DB101E /* UIImageView+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD8597E1EEFC9DF00DB101E /* UIImageView+Photo.swift */; };
 		8CEFD8D01EE7CF9E009CF043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFD8CF1EE7CF9E009CF043 /* AppDelegate.swift */; };
 		8CEFD8D21EE7CF9E009CF043 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFD8D11EE7CF9E009CF043 /* FeedViewController.swift */; };
@@ -33,6 +34,7 @@
 		8C9AA7981EF794A7006E10F5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8C9AA79A1EF91390006E10F5 /* DataResponse+ErrorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataResponse+ErrorInfo.swift"; sourceTree = "<group>"; };
 		8C9AA79C1EF93BAC006E10F5 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		8C9AA7EA1EFC36CA006E10F5 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8CD8597E1EEFC9DF00DB101E /* UIImageView+Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Photo.swift"; sourceTree = "<group>"; };
 		8CEFD8CC1EE7CF9E009CF043 /* GrayGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrayGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEFD8CF1EE7CF9E009CF043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				8CEFD8D11EE7CF9E009CF043 /* FeedViewController.swift */,
 				8C9AA7981EF794A7006E10F5 /* LoginViewController.swift */,
 				8C9AA79C1EF93BAC006E10F5 /* SplashViewController.swift */,
+				8C9AA7EA1EFC36CA006E10F5 /* MainTabBarController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			files = (
 				8C9AA7991EF794A7006E10F5 /* LoginViewController.swift in Sources */,
 				8C47BAD71EE971E1009B59D0 /* User.swift in Sources */,
+				8C9AA7EB1EFC36CA006E10F5 /* MainTabBarController.swift in Sources */,
 				8C9AA7971EF28568006E10F5 /* CollectionActivityIndicatorView.swift in Sources */,
 				8C47BADA1EE983C6009B59D0 /* String+Size.swift in Sources */,
 				8CEFD8E81EE7F080009CF043 /* Post.swift in Sources */,

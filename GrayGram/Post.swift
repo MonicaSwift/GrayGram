@@ -32,3 +32,10 @@ struct Post:Mappable {
         self.createdAt <- (map["createdAt"], ISO8601DateTransform()) // 문자열을 지정한 포맷 Date로
     }
 }
+
+extension Notification.Name {
+    /// 좋아요를 한 경우 발생하는 노티피케이션입니다. `userInfo`에 `postID:Int`가 전달됩니다.
+    static let postDidLike:Notification.Name = .init("postDidLike")
+    /// 좋아요를 취소한 경우 발생하는 노티피케이션입니다. `userInfo`에 `postID:Int`가 전달됩니다.
+    static let postDidUnlike:Notification.Name = .init("postDidUnlike")
+}

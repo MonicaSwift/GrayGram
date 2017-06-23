@@ -19,6 +19,18 @@ final class FeedViewController: UIViewController {
         frame : CGRect.zero,
         collectionViewLayout : UICollectionViewFlowLayout()
     )
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.navigationItem.title = "Graygram"
+        self.tabBarItem.title = "Feed"
+        self.tabBarItem.image = UIImage(named: "tab-feed")
+        self.tabBarItem.selectedImage = UIImage(named: "tab-free-selected")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +54,9 @@ final class FeedViewController: UIViewController {
             make.edges.equalToSuperview()
         }
        
+        NotificationCenter.default.addObserver(self, selector: #selector(postDidLike), name: .postDidLike, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(postDidUnlike), name: .postDidUnlike, object: nil)
+        
         fetchPosts()
     }
     
@@ -97,12 +112,54 @@ final class FeedViewController: UIViewController {
             }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK : Notification
+    
+    func postDidLike(notification:Notification) {
+        print("postDidLike")
+        guard let postID = notification.userInfo?["postID"] as? Int else { return }
+        
+        // 방법1.
+//        self.posts = self.posts.map { post in
+//            if post.id == postID {
+//                var newPost = post
+//                newPost.isLiked = true
+//                newPost.likeCount! += 1
+//                return newPost
+//            } else {
+//                return post
+//            }
+//            
+//        }
+        
+        // 방법2.
+//        guard let index = self.posts.index(where: { (post:Post) -> Bool in
+//            return post.id == postID
+//        })
+//        else {return}
+        
+        // 방법3.
+        guard let index = self.posts.index(where: {$0.id == postID} ) else {return}
+        
+        var newPost = posts[index]
+        newPost.isLiked = true
+        newPost.likeCount! += 1
+        posts[index] = newPost
+        
+        //print("\(posts[0].isLiked):\(posts[0].likeCount)") //첫번때 포스트로 테스트
     }
+    
+    func postDidUnlike(notification:Notification) {
+        print("postDidUnlike")
+        
+        guard let postID = notification.userInfo?["postID"] as? Int else { return }
+        guard let index = self.posts.index(where: {$0.id == postID} ) else {return}
+        var newPost = posts[index]
+        newPost.isLiked = false
+        newPost.likeCount! -= 1
+        posts[index] = newPost
 
-
+        //print("\(posts[0].isLiked):\(posts[0].likeCount)") //첫번때 포스트로 테스트
+    }
 }
 
 extension FeedViewController:UICollectionViewDataSource {
@@ -137,7 +194,7 @@ extension FeedViewController:UICollectionViewDelegateFlowLayout {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //print(scrollView.contentOffset.y, scrollView.height, scrollView.contentSize.height)
+        print(scrollView.contentOffset.y, scrollView.height, scrollView.contentSize.height, scrollView.bounds.origin.y)
         guard scrollView.contentSize.height > 0 else { return }
         
         let contentOffsetBottom = scrollView.contentOffset.y + scrollView.height

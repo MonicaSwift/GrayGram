@@ -37,9 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func presentMainScreen() {
-        let viewController = FeedViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        self.window?.rootViewController = navigationController
+//        let viewController = FeedViewController()
+//        let navigationController = UINavigationController(rootViewController: viewController)
+//        self.window?.rootViewController = navigationController
+        let viewController = MainTabBarController()
+        self.window?.rootViewController = viewController
+
     }
     func presentLoginScreen() {
         let viewController = LoginViewController()

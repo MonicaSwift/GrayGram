@@ -179,33 +179,51 @@ final class PostCardCell: UICollectionViewCell {
     
     func likeButtonDidTap() {
     
-        guard let postID = self.post?.id else { return }
-        let urlString = "https://api.graygram.com/posts/\(postID)/likes"
+        guard let post = self.post else { return }
+        let urlString = "https://api.graygram.com/posts/\(post.id!)/likes"
         
         if !likeButton.isSelected {
+            var newPost = post
+            newPost.isLiked = true
+            newPost.likeCount! += 1
+            self.configure(post: newPost)
+            
+            NotificationCenter.default.post(name: .postDidLike, object: self, userInfo: ["postID":post.id])
+            
             Alamofire.request(urlString, method: .post)
                 .validate(statusCode: 200 ..< 400)
                 .responseData{ response in
                     switch response.result {
                     case .success :
-                        print("좋아요 성공 \(postID)")
-                        self.likeButton.isSelected = true
+                        print("좋아요 성공 \(post.id!)")
                     case .failure :
-                        print("좋아요 실패")
-                        self.likeButton.isSelected = false
+                        if response.response?.statusCode != 409 {
+                            print("좋아요 실패")
+                            self.configure(post: post)
+                            NotificationCenter.default.post(name: .postDidUnlike, object: self, userInfo: ["postID":post.id])
+                        }
                     }
             }
         } else {
+            var newPost = post
+            newPost.isLiked = false
+            newPost.likeCount! -= 1
+            self.configure(post: newPost)
+
+            NotificationCenter.default.post(name: .postDidUnlike, object: self, userInfo: ["postID":post.id])
+            
             Alamofire.request(urlString, method: .delete)
                 .validate(statusCode: 200 ..< 400)
                 .responseData{ response in
                     switch response.result {
                     case .success :
-                        print("좋아요 해제 성공 \(postID)")
-                        self.likeButton.isSelected = false
+                        print("좋아요 해제 성공 \(post.id!)")
                     case .failure :
-                        print("좋아요 해제 실패")
-                        self.likeButton.isSelected = true
+                        if response.response?.statusCode != 409 {
+                            print("좋아요 해제 실패")
+                            self.configure(post: post)
+                            NotificationCenter.default.post(name: .postDidLike, object: self, userInfo: ["postID":post.id])
+                        }
                     }
             }
         }
