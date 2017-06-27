@@ -45,13 +45,20 @@ final class MainTabBarController:UITabBarController {
         self.present(pickerController, animated:true, completion: nil)
     }
     
-    fileprivate func presernCropViewController(image:UIImage) {
+    fileprivate func presentCropViewController(image:UIImage) {
         let cropViewController = CropViewController(image:image)
         cropViewController.didFinichCropping = { image in
-            let grayscaledImage = image.grayscale()
-            print(grayscaledImage)
+            guard let grayscaledImage = image.grayscale() else { return }
+            self.dismiss(animated: true, completion: nil)
+            self.presentPostEditViewController(image: grayscaledImage)
         }
         let navigationController = UINavigationController(rootViewController: cropViewController)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    fileprivate func presentPostEditViewController(image:UIImage) {
+        let viewController = PostEditViewController(image:image)
+        let navigationController = UINavigationController(rootViewController: viewController)
         self.present(navigationController, animated: true, completion: nil)
     }
 }
@@ -78,7 +85,7 @@ extension MainTabBarController:UIImagePickerControllerDelegate {
          */
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         picker.dismiss(animated: true, completion: nil)
-        self.presernCropViewController(image: image)
+        self.presentCropViewController(image: image)
     }
 }
 

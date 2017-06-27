@@ -17,6 +17,9 @@
 		8C9AA7EB1EFC36CA006E10F5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7EA1EFC36CA006E10F5 /* MainTabBarController.swift */; };
 		8C9AA7ED1EFCD4E0006E10F5 /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7EC1EFCD4E0006E10F5 /* CropViewController.swift */; };
 		8C9AA7EF1EFD7451006E10F5 /* UIImage+Grayscale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7EE1EFD7451006E10F5 /* UIImage+Grayscale.swift */; };
+		8C9AA7F11F021B2A006E10F5 /* PostEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7F01F021B2A006E10F5 /* PostEditViewController.swift */; };
+		8C9AA7F31F02251A006E10F5 /* PostEditViewImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7F21F02251A006E10F5 /* PostEditViewImageCell.swift */; };
+		8C9AA7F51F0235C7006E10F5 /* PostEditViewTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7F41F0235C7006E10F5 /* PostEditViewTextCell.swift */; };
 		8CD8597F1EEFC9DF00DB101E /* UIImageView+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD8597E1EEFC9DF00DB101E /* UIImageView+Photo.swift */; };
 		8CEFD8D01EE7CF9E009CF043 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFD8CF1EE7CF9E009CF043 /* AppDelegate.swift */; };
 		8CEFD8D21EE7CF9E009CF043 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEFD8D11EE7CF9E009CF043 /* FeedViewController.swift */; };
@@ -39,6 +42,9 @@
 		8C9AA7EA1EFC36CA006E10F5 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8C9AA7EC1EFCD4E0006E10F5 /* CropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
 		8C9AA7EE1EFD7451006E10F5 /* UIImage+Grayscale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Grayscale.swift"; sourceTree = "<group>"; };
+		8C9AA7F01F021B2A006E10F5 /* PostEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEditViewController.swift; sourceTree = "<group>"; };
+		8C9AA7F21F02251A006E10F5 /* PostEditViewImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEditViewImageCell.swift; sourceTree = "<group>"; };
+		8C9AA7F41F0235C7006E10F5 /* PostEditViewTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEditViewTextCell.swift; sourceTree = "<group>"; };
 		8CD8597E1EEFC9DF00DB101E /* UIImageView+Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Photo.swift"; sourceTree = "<group>"; };
 		8CEFD8CC1EE7CF9E009CF043 /* GrayGram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrayGram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CEFD8CF1EE7CF9E009CF043 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +150,8 @@
 			children = (
 				8CEFD8E91EE93279009CF043 /* PostCardCell.swift */,
 				8C9AA7961EF28568006E10F5 /* CollectionActivityIndicatorView.swift */,
+				8C9AA7F21F02251A006E10F5 /* PostEditViewImageCell.swift */,
+				8C9AA7F41F0235C7006E10F5 /* PostEditViewTextCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -156,6 +164,7 @@
 				8C9AA79C1EF93BAC006E10F5 /* SplashViewController.swift */,
 				8C9AA7EA1EFC36CA006E10F5 /* MainTabBarController.swift */,
 				8C9AA7EC1EFCD4E0006E10F5 /* CropViewController.swift */,
+				8C9AA7F01F021B2A006E10F5 /* PostEditViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -299,7 +308,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C9AA7F31F02251A006E10F5 /* PostEditViewImageCell.swift in Sources */,
 				8C9AA7991EF794A7006E10F5 /* LoginViewController.swift in Sources */,
+				8C9AA7F51F0235C7006E10F5 /* PostEditViewTextCell.swift in Sources */,
 				8C47BAD71EE971E1009B59D0 /* User.swift in Sources */,
 				8C9AA7EB1EFC36CA006E10F5 /* MainTabBarController.swift in Sources */,
 				8C9AA7ED1EFCD4E0006E10F5 /* CropViewController.swift in Sources */,
@@ -310,6 +321,7 @@
 				8CD8597F1EEFC9DF00DB101E /* UIImageView+Photo.swift in Sources */,
 				8CEFD8EA1EE93279009CF043 /* PostCardCell.swift in Sources */,
 				8CEFD8D21EE7CF9E009CF043 /* FeedViewController.swift in Sources */,
+				8C9AA7F11F021B2A006E10F5 /* PostEditViewController.swift in Sources */,
 				8CEFD8D01EE7CF9E009CF043 /* AppDelegate.swift in Sources */,
 				8C9AA79B1EF91390006E10F5 /* DataResponse+ErrorInfo.swift in Sources */,
 				8C9AA79D1EF93BAC006E10F5 /* SplashViewController.swift in Sources */,
