@@ -10,9 +10,27 @@ import UIKit
 import Alamofire
 
 final class FeedViewController: UIViewController {
+    enum ViewMode {
+        case card
+        case tile
+    }
     fileprivate var posts:[Post] = []
     fileprivate var nextURLString:String?
     fileprivate var isLoading:Bool = false
+    fileprivate var viewMode:ViewMode = .card {
+        didSet {
+            switch self.viewMode {
+            case .card:
+                self.navigationItem.leftBarButtonItem = self.tileButtonItem
+            case .tile:
+                self.navigationItem.leftBarButtonItem = self.cardButtonItem
+            }
+            self.collectionView.reloadData()
+        }
+    }
+    
+    fileprivate let tileButtonItem = UIBarButtonItem(image: UIImage(named:"icon-tile"), style: .plain, target: nil, action: nil)
+    fileprivate let cardButtonItem = UIBarButtonItem(image: UIImage(named:"icon-card"), style: .plain, target: nil, action: nil)
     fileprivate let refreshControl = UIRefreshControl()
     
     fileprivate let collectionView = UICollectionView(
@@ -26,6 +44,12 @@ final class FeedViewController: UIViewController {
         self.tabBarItem.title = "Feed"
         self.tabBarItem.image = UIImage(named: "tab-feed")
         self.tabBarItem.selectedImage = UIImage(named: "tab-free-selected")
+        
+        self.tileButtonItem.target = self
+        self.tileButtonItem.action = #selector(tileButtonItemDidTap)
+        self.cardButtonItem.target = self
+        self.cardButtonItem.action = #selector(cardButtonItemDidTap)
+        self.navigationItem.leftBarButtonItem = self.tileButtonItem
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +64,7 @@ final class FeedViewController: UIViewController {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
         collectionView.register(PostCardCell.self, forCellWithReuseIdentifier: "cardCell")
+        collectionView.register(PostTileCell.self, forCellWithReuseIdentifier: "tileCell")
         collectionView.register(CollectionActivityIndicatorView.self,
                                 forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
                                 withReuseIdentifier: "activityIndicatorView")
@@ -60,6 +85,7 @@ final class FeedViewController: UIViewController {
        
         NotificationCenter.default.addObserver(self, selector: #selector(postDidLike), name: .postDidLike, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(postDidUnlike), name: .postDidUnlike, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(postDidCreate), name: .postDidCreate, object: nil)
         
         fetchPosts()
     }
@@ -79,7 +105,7 @@ final class FeedViewController: UIViewController {
         
         let urlString:String
         if !isMore {
-            urlString = "https://api.graygram.com/feed?limit=3"
+            urlString = "https://api.graygram.com/feed"
         } else if let nextURLString = self.nextURLString {
             urlString = nextURLString
         } else {
@@ -164,6 +190,20 @@ final class FeedViewController: UIViewController {
 
         //print("\(posts[0].isLiked):\(posts[0].likeCount)") //첫번때 포스트로 테스트
     }
+    
+    func postDidCreate(notification:Notification) {
+        guard let post = notification.userInfo?["post"] as? Post else { return }
+        self.posts.insert(post, at: 0)
+        self.collectionView.reloadData()
+    }
+    
+    func tileButtonItemDidTap() {
+        self.viewMode = .tile
+    }
+    
+    func cardButtonItemDidTap() {
+        self.viewMode = .card
+    }
 }
 
 extension FeedViewController:UICollectionViewDataSource {
@@ -171,10 +211,22 @@ extension FeedViewController:UICollectionViewDataSource {
         return self.posts.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! PostCardCell
-        let post = self.posts[indexPath.item]
-        cell.configure(post: post)
-        return cell
+        switch self.viewMode {
+        case .card:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath) as! PostCardCell
+            let post = self.posts[indexPath.item]
+            cell.configure(post: post)
+            return cell
+        case .tile:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tileCell", for: indexPath) as! PostTileCell
+            let post = self.posts[indexPath.item]
+            cell.configure(post: post)
+            cell.didTap = {
+                let viewController = PostViewController(postID: post.id)
+                self.navigationController?.pushViewController(viewController, animated: true)
+            }
+            return cell
+        }
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter,
@@ -193,8 +245,12 @@ extension FeedViewController:UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let post = self.posts[indexPath.item]
-        return PostCardCell.size(width: collectionView.frame.size.width, post: post)
-        //return CGSize(width:collectionView.frame.size.width, height:collectionView.frame.size.width)
+        switch self.viewMode {
+        case .card:
+            return PostCardCell.size(width: collectionView.frame.size.width, post: post)
+        case .tile:
+            return PostTileCell.size(width: collectionView.width/3)
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -209,10 +265,24 @@ extension FeedViewController:UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        switch self.viewMode {
+        case .card:
+            return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        default:
+            return UIEdgeInsets.zero
+        }
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        switch self.viewMode {
+        case .card:
+            return 20
+        case .tile:
+            return 0
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 

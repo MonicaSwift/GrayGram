@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		703B27860E5E80FA5B5EC3E7 /* Pods_GrayGram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650A1444412A8C58EC722B7D /* Pods_GrayGram.framework */; };
+		8C1C0A071F07CE4C00B4091A /* PostTileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C0A061F07CE4C00B4091A /* PostTileCell.swift */; };
+		8C1C0A091F08072800B4091A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1C0A081F08072800B4091A /* PostViewController.swift */; };
 		8C47BAD71EE971E1009B59D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47BAD61EE971E1009B59D0 /* User.swift */; };
 		8C47BADA1EE983C6009B59D0 /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47BAD91EE983C6009B59D0 /* String+Size.swift */; };
 		8C9AA7971EF28568006E10F5 /* CollectionActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9AA7961EF28568006E10F5 /* CollectionActivityIndicatorView.swift */; };
@@ -33,6 +35,8 @@
 		51CF68F40B794AE45A3A3503 /* Pods-GrayGram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrayGram.release.xcconfig"; path = "Pods/Target Support Files/Pods-GrayGram/Pods-GrayGram.release.xcconfig"; sourceTree = "<group>"; };
 		650A1444412A8C58EC722B7D /* Pods_GrayGram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrayGram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85C1A4A6C5086E4A028E47CD /* Pods-GrayGram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrayGram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GrayGram/Pods-GrayGram.debug.xcconfig"; sourceTree = "<group>"; };
+		8C1C0A061F07CE4C00B4091A /* PostTileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTileCell.swift; sourceTree = "<group>"; };
+		8C1C0A081F08072800B4091A /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		8C47BAD61EE971E1009B59D0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8C47BAD91EE983C6009B59D0 /* String+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Size.swift"; sourceTree = "<group>"; };
 		8C9AA7961EF28568006E10F5 /* CollectionActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionActivityIndicatorView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				8C9AA7961EF28568006E10F5 /* CollectionActivityIndicatorView.swift */,
 				8C9AA7F21F02251A006E10F5 /* PostEditViewImageCell.swift */,
 				8C9AA7F41F0235C7006E10F5 /* PostEditViewTextCell.swift */,
+				8C1C0A061F07CE4C00B4091A /* PostTileCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 				8C9AA7EA1EFC36CA006E10F5 /* MainTabBarController.swift */,
 				8C9AA7EC1EFCD4E0006E10F5 /* CropViewController.swift */,
 				8C9AA7F01F021B2A006E10F5 /* PostEditViewController.swift */,
+				8C1C0A081F08072800B4091A /* PostViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -317,8 +323,10 @@
 				8C9AA7971EF28568006E10F5 /* CollectionActivityIndicatorView.swift in Sources */,
 				8C47BADA1EE983C6009B59D0 /* String+Size.swift in Sources */,
 				8CEFD8E81EE7F080009CF043 /* Post.swift in Sources */,
+				8C1C0A071F07CE4C00B4091A /* PostTileCell.swift in Sources */,
 				8C9AA7EF1EFD7451006E10F5 /* UIImage+Grayscale.swift in Sources */,
 				8CD8597F1EEFC9DF00DB101E /* UIImageView+Photo.swift in Sources */,
+				8C1C0A091F08072800B4091A /* PostViewController.swift in Sources */,
 				8CEFD8EA1EE93279009CF043 /* PostCardCell.swift in Sources */,
 				8CEFD8D21EE7CF9E009CF043 /* FeedViewController.swift in Sources */,
 				8C9AA7F11F021B2A006E10F5 /* PostEditViewController.swift in Sources */,
